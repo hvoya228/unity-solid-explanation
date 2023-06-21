@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 516754098}
   - component: {fileID: 516754097}
   m_Layer: 0
-  m_Name: Player1
+  m_Name: Human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 516754095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3afc616c0a75a449a33f2215891727c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d3f7d890b1c6664fb686a5915cf7e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &516754098
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 516754095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67df1ed9bdf5bc489c329bf7e88bfa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 788d5c50fcdf50743862099fe76d1954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &519420028
@@ -306,10 +306,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808077027}
-  - component: {fileID: 808077029}
   - component: {fileID: 808077028}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,18 +338,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 808077026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08380c8f9a373b246b8fa15e828652f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &808077029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808077026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67df1ed9bdf5bc489c329bf7e88bfa4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d3f7d890b1c6664fb686a5915cf7e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
