@@ -1,10 +1,14 @@
 # Explanation  
 
+**Before we get started, you have to understand that SOLID is abstract thing and can have many diferent explanations and implementation methods!**  
+
 ### What is SOLID?  
 SOLID - is set of rules, by following which you will have flexible and easier to understand project.    
 Following solid rules is great for team project to have understanding the code of each other,  
 without studying the approach to each individual's work.  
 Also you will get a flexible project to adding smth new in the future and will avoid many bugs during development.  
+
+---
 
 ### Single responsibility  
 Each object or script should have a single responsibility.  
@@ -27,4 +31,8 @@ Now you have flexible implementation of ideas:
 
 ![Inspector Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/HumanInspector.png)
 ![Inspector Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/GhostInspector.png)
-![Console Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/DebugLog.png)
+![Console Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/DebugLog.png)  
+
+---  
+
+
