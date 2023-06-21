@@ -16,16 +16,15 @@ Example:
 Imagine that we have two implement a Human player:  
 Our Human have health and he have to move. We can realize this ideas in the same class,  
 but firstly it`s inconveniently and will cause a problem if we want to make second Player, which is Ghost,    
-with movement system but without health.    
+with movement system but without health.  
 
 So, you have to separate your class that including health and movement to give a movement component to both players:  
 
-![Code Example Image]()  
-![Code Example Image]()
-![Code Example Image]()
+![Code Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/HealthScript.png)    
+![Code Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/MoveSystemScript.png)  
 
 Now you have flexible implementation of ideas:  
 
-![Inspector Example Image]()
-![Inspector Example Image]()
-![Console Example Image]()
+![Inspector Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/HumanInspector.png)
+![Inspector Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/GhostInspector.png)
+![Console Example Image](https://github.com/chugaister228/unity-solid-explanation/blob/main/Prewievs/S/DebugLog.png)
