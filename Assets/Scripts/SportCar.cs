@@ -6,6 +6,6 @@ public class SportCar : Car
 {
     public void Nitro()
     {
-        Debug.Log("I am " + gameObject.name + " with nitro speed-up");
+        Debug.Log($"I am {gameObject.name} with nitro speed-up");
     }
 }

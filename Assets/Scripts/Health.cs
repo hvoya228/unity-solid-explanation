@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private int health = 10;
+    [SerializeField] private int health;
 
     private void Start()
     {
-        Debug.Log("I am " + gameObject.name + " and have " + health + " health");
+        GetHealth();
+    }
+
+    private void GetHealth()
+    {
+        Debug.Log($"I am {gameObject.name} and have {health} health");
     }
 }

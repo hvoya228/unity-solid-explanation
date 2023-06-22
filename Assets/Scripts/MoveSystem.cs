@@ -6,6 +6,11 @@ public class MoveSystem : MonoBehaviour
 {
     private void Start()
     {
-        Debug.Log("I am " + gameObject.name + " with movement system");
+        Move();
+    }
+
+    private void Move()
+    {
+        Debug.Log($"I am {gameObject.name} with movement system");
     }
 }

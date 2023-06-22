@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    [SerializeField] private float speed;
+
     public virtual void Drive()
     {
-        Debug.Log("I am " + gameObject.name + " with driving system");
+        Debug.Log($"I am { gameObject.name} with driving system and {speed} speed");
     }
 }
