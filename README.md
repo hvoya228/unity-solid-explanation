@@ -134,3 +134,186 @@ public class CarsController : MonoBehaviour
 
 ---
 
+### Liskov Substitution  
+*Subclasses should be substitutable for their base classes without affecting the correctness of the program.  
+In Unity, this can involve creating a base class or interface  
+that describes the common functionality and then creating subclasses that extend this functionality while adhering to the interface.*  
+
+*On other words, when you gives child class to parent`s class variable and you handle this variable it is have to work correctly,
+without extra methods.*  
+
+**Example:**  
+
+You have to make a inventory with items in your game.  
+You added an abstract class for items, some items and controller for them:  
+```c#
+public abstract class Item : MonoBehaviour
+{
+    public abstract void GetDescription();
+    public abstract void Use();
+}
+```
+
+```c#
+public class Sword : Item
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am sword and can attack");
+    }
+
+    public override void Use()
+    {
+        Debug.Log("Attack...");
+    }
+}
+```
+
+```c#
+public class HealthPotion : Item
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am health potion and can heal you");
+    }
+
+    public override void Use()
+    {
+        Debug.Log("Healing...");
+    }
+}
+```
+
+```c#
+public class ItemsController : MonoBehaviour
+{
+    [SerializeField] private List<Item> items;
+
+    private void Start()
+    {
+        foreach (var item in items)
+        {
+            item.GetDescription();
+            item.Use();
+        }
+    }
+}
+```
+
+Items controller working with different items but with the same class, everything great.  
+But you also have to add a Junk item, which have description but doing nothing.  
+We can make this item like this:  
+```c#
+public class Junk : Item
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am junk and do nothing");
+    }
+
+    public override void Use()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+```
+
+You can see that Use method is muffled with exception, so this is a problem of Liskov Substitution.  
+We have to solve it, your code must be without this "muffled thinks".  
+
+In this case we can make IUsable interface with Use method to implement him in all items, but don`t in Junk item.  
+And remove the Use method from Item.cs script.
+```c#
+public interface IUsable
+{
+    public void Use();
+}
+```
+
+```c#
+public class Sword : Item, IUsable
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am sword and can attack");
+    }
+
+    public void Use()
+    {
+        Debug.Log("Attack...");
+    }
+}
+```
+
+```c#
+public class HealthPotion : Item, IUsable
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am health potion and can heal you");
+    }
+
+    public void Use()
+    {
+        Debug.Log("Healing...");
+    }
+}
+```
+
+```c#
+public class Junk : Item
+{
+    public override void GetDescription()
+    {
+        Debug.Log("I am junk and do nothing");
+    }
+}
+```
+
+```c#
+public class ItemsController : MonoBehaviour
+{
+    [SerializeField] private List<Item> items;
+    private List<IUsable> usableItems;
+
+    private void Start()
+    {
+        SetUsableItems();
+        GetItemsDescription();
+        UseItems();
+    }
+
+    private void SetUsableItems()
+    {
+        usableItems = new List<IUsable>();
+
+        foreach (var item in items)
+        {
+            if (item is IUsable)
+            {
+                usableItems.Add(item as IUsable);
+            }
+        }
+    }
+
+    private void GetItemsDescription()
+    {
+        foreach (var item in items)
+        {
+            item.GetDescription();
+        }
+    }
+
+    private void UseItems()
+    {
+        foreach (var item in usableItems)
+        {
+            item.Use();
+        }
+    }
+}
+```
+
+Now we have the item system with right solid architecture.  
+
+---
