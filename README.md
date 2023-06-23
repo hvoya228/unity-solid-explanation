@@ -1,6 +1,7 @@
 # Explanation  
 
 **Before we get started, you have to understand that SOLID is abstract thing and can have many diferent explanations and implementation methods!**  
+**And all examples are very simple to give you only understanding of SOLID!***
 
 ### What is SOLID?  
 *SOLID - is set of rules, by following which you will have flexible and easier to understand project.    
@@ -312,8 +313,124 @@ public class ItemsController : MonoBehaviour
         }
     }
 }
+```  
+Now we have the item system with right solid architecture.  
+
+---  
+
+### Interface Segregation  
+*Clients should not be forced to depend on interfaces they do not use.  
+In Unity, this can mean splitting large components into smaller, more specific components with separate interfaces,  
+so that clients only depend on the necessary parts of the functionality.*  
+  
+**Example:**  
+You have a knife and pistol in your game, so it`s good think to create the IWeapon interface for them:  
+```c#
+public interface IWeapon
+{
+    public void Attack();
+    public void Reload();
+}
 ```
 
-Now we have the item system with right solid architecture.  
+And implement this interface in Knife and Pistol scripts:  
+```c#
+public class Pistol : MonoBehaviour, IWeapon
+{
+    private void Start()
+    {
+        Attack();
+        Reload();
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Pistol attack...");
+    }
+
+    public void Reload()
+    {
+        Debug.Log("Pistol reload...");
+    }
+}
+```  
+
+```c#
+public class Knife : MonoBehaviour, IWeapon
+{
+    private void Start()
+    {
+        Attack();
+        Reload();
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Knife attack...");
+    }
+
+    public void Reload()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+```  
+
+How can you think a knife can't reload.  
+So, this is the problem of Interface Segregation principe, smth similar to Liskov Substitution.
+To solve this, we can separate IWeapon to IColdWeapon and IHotWeapon interfaces for example:  
+(Also you can keep the IWeapon interface with Attack method and make IReloadable interface with Reload method)  
+```c#
+public interface IColdWeapon
+{
+    public void Attack();
+}
+```
+
+```c#
+public interface IHotWeapon
+{
+    public void Attack();
+    public void Reload();
+}
+```
+
+```c#
+public class Knife : MonoBehaviour, IColdWeapon
+{
+    private void Start()
+    {
+        Attack();
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Knife attack...");
+    }
+}
+```
+
+```c#
+public class Pistol : MonoBehaviour, IHotWeapon
+{
+    private void Start()
+    {
+        Attack();
+        Reload();
+    }
+
+    public void Attack()
+    {
+        Debug.Log("Pistol attack...");
+    }
+
+    public void Reload()
+    {
+        Debug.Log("Pistol reload...");
+    }
+}
+```
+
+Now we have all models without unusable methods.  
 
 ---
