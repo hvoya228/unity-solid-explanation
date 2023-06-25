@@ -434,3 +434,151 @@ public class Pistol : MonoBehaviour, IHotWeapon
 Now we have all models without unusable methods.  
 
 ---
+
+### Dependency Inversion  
+*Code should depend on abstractions, not on concrete implementations.*  
+
+*It means that you have to create abstraction classes and low/high level classes for them, avoiding dependecies between all of them.*  
+*Abstraction - some model of thing that you need to implement (ex: Monster, IMonster)*  
+*Low level class - object of abstraction with specific details (ex: Zombie, Vampire)*  
+*Detail - specific properties, variables, etc., of the low level class (ex: zombie.speed = 10f, vampire.speed = 20f)*
+*High level class - class that controlling the abstractions (ex: MonstersController)*  
+
+**Example:**  
+We have to create monsters in our game - Zombie and Vampire:  
+```c#
+public class Zombie : MonoBehaviour
+{
+    private float speed = 10f;
+
+    public void Move()
+    {
+        Debug.Log($"I am Zombie and I`m moving with {speed} speed");
+    }
+}
+```
+
+```c#
+public class Vampire : MonoBehaviour
+{
+    private float speed = 20f;
+
+    public void Move()
+    {
+        Debug.Log($"I am Vampire and I`m moving with {speed} speed");
+    }
+}
+```
+
+```c#
+public class MonstersController : MonoBehaviour
+{
+    [SerializeField] private Zombie zombie;
+    [SerializeField] private Vampire vampire;
+
+    private void Start()
+    {
+        zombie.Move();
+        vampire.Move();
+    }
+}
+```
+
+Now, you want to add a teleportation for vampire.  
+We can make like this:  
+```c#
+public class Zombie : MonoBehaviour
+{
+    private float speed = 10f;
+
+    public void Move()
+    {
+        Debug.Log($"I am Zombie and I`m moving with {speed} speed");
+    }
+}
+```
+
+```c#
+public class Vampire : MonoBehaviour
+{
+    private float speed = 20f;
+
+    public void Move(float teleporationSpeed)
+    {
+        Debug.Log($"I am Vampire and I`m moving with {speed} speed and do teleportation with {teleportationSpeed} speed");
+    }
+}
+```
+
+```c#
+public class MonstersController : MonoBehaviour
+{
+    [SerializeField] private Zombie zombie;
+    [SerializeField] private Vampire vampire;
+
+    private void Start()
+    {
+        zombie.Move();
+        vampire.Move(30f);
+    }
+}
+```  
+
+To implement a teleportation for Vampire you`ve changed two classes and violated the Dependency Inversion principe.  
+To avoid this we have to write code in such a way as to change something only in one class.  
+So, let`s make an interface for monsters and call only interface`s objects in MonsterController.  
+```c#
+public interface IMonster
+{
+    public void Move();
+}
+
+public class MonstersController : MonoBehaviour
+{
+    public class MonstersController : MonoBehaviour
+{
+    [SerializeField] private Zombie zombie;
+    [SerializeField] private Vampire vampire;
+
+    private void Start()
+    {
+        zombie.Move();
+        vampire.Move();
+    }
+}
+}
+```  
+
+After this we can make changes only in Vampire class, because the MonsterController objects have Move method without parametrs.  
+```c#
+public class Vampire : MonoBehaviour, IMonster
+{
+    private float speed = 20f;
+    private float teleportationSpeed = 30f;
+
+    public void Move()
+    {
+        Debug.Log($"I am Vampire and I`m moving with {speed} speed and do teleportation with {teleportationSpeed} speed");
+    }
+}
+```
+And leave our Zombie class without changes.  
+
+Now we have implemented monsters without dependecies between their controller and details.  
+
+---  
+
+###Conclusion  
+The importance of deep following each principle:  
+S - 8/10  
+O - 6/10  
+L - 5/10  
+I - 6/10  
+D - 10/10  
+
+Remember that sometimes following this principles are bad for the specefic case and you have to do something other way.  
+It takes practice and understanding for certain tasks.  
+
+---  
+
+git pull the project to see how it works
