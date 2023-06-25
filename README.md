@@ -524,9 +524,9 @@ public class MonstersController : MonoBehaviour
 }
 ```  
 
-To implement a teleportation for Vampire you`ve changed two classes and violated the Dependency Inversion principe.  
+To implement a teleportation for Vampire you have changed two classes and violated the Dependency Inversion principe.  
 To avoid this we have to write code in such a way as to change something only in one class.  
-So, let`s make an interface for monsters and call only interface`s objects in MonsterController.  
+So, let`s make an interface for monsters and call only interface objects in MonsterController.  
 ```c#
 public interface IMonster
 {
@@ -568,7 +568,7 @@ Now we have implemented monsters without dependecies between their controller an
 
 ---  
 
-###Conclusion  
+### Conclusion  
 The importance of deep following each principle:  
 S - 8/10  
 O - 6/10  
